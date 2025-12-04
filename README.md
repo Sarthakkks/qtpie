@@ -1,70 +1,183 @@
-# Getting Started with Create React App
+🎧 QtPie – Spotify Clone (React + Tailwind + Custom Player)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+QtPie is a modern, fully responsive Spotify-inspired music player built using React, Tailwind CSS, and a custom HTML5 audio engine.
+It features authentication, dynamic greetings, playlists, custom song playback, next/prev controls, volume control, and a beautifully clean UI.
 
-## Available Scripts
+This project recreates the essential user experience of Spotify — optimized for learning, portfolio use, and personal customization.
 
-In the project directory, you can run:
+🚀 Features
+🎵 Music Player
 
-### `npm start`
+Custom HTML5 audio player
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Play / Pause
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Next / Previous track
 
-### `npm test`
+Volume control
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Progress (seek) bar
 
-### `npm run build`
+Auto-play next track
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Real-time UI updates
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+🎼 Playlists
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Local playlist support
 
-### `npm run eject`
+Featured playlists (static UI)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Clickable Spotify playlist cards → open in Spotify
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Playlist cover images
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Interactive hover UI
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+🔐 Authentication
 
-## Learn More
+Login
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Signup
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Persistent user session (localStorage)
 
-### Code Splitting
+Protected routes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Logout
 
-### Analyzing the Bundle Size
+👋 Dynamic Greeting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Automatically shows:
 
-### Making a Progressive Web App
+Good morning
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Good afternoon
 
-### Advanced Configuration
+Good evening
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Based on real system time + user’s name.
 
-### Deployment
+🎨 UI / UX
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Clean Spotify-style layout
 
-### `npm run build` fails to minify
+Sidebar navigation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Header with search placeholder
+
+Bottom fixed music player
+
+Fully responsive
+
+Smooth dark theme
+
+🛠 Tech Stack
+
+React (Functional Components + Hooks)
+
+React Router (Protected Routes + Navigation)
+
+Context API (Auth + Player State)
+
+Tailwind CSS (Custom styling + utility classes)
+
+HTML5 Audio API (Song playback engine)
+
+LocalStorage (Auth persistence)
+
+📁 Project Structure
+src
+ ├─ components
+ │   ├─ Layout.js
+ │   ├─ Sidebar.js
+ │   ├─ Navbar.js
+ │   ├─ Player.js
+ │   └─ TrackList / TrackItem
+ ├─ pages
+ │   ├─ Home.js
+ │   ├─ Login.js
+ │   ├─ Signup.js
+ │   └─ Playlist.js
+ ├─ context
+ │   ├─ AuthContext.js
+ │   └─ PlayerContext.js
+ ├─ songs (local audio + covers)
+ ├─ App.js
+ ├─ App.css
+ └─ index.js
+
+📦 Installation & Setup
+1️⃣ Clone the repository
+git clone https://github.com/Sarthakkks/qtpie-spotify-clone.git
+
+2️⃣ Install dependencies
+npm install
+
+3️⃣ Run the development server
+npm start
+
+🎶 Adding Songs
+
+Place audio files inside:
+
+public/songs/
+
+
+Example:
+
+public/songs/laufey.mp3
+public/songs/karan.mp3
+public/songs/cover1.jpg
+public/songs/cover2.jpg
+
+
+Then register them in the local playlist (inside Playlist.js or track list file):
+
+{
+  id: 1,
+  title: "From the Start",
+  artist: "Laufey",
+  audioUrl: "/songs/laufey.mp3",
+  cover: "/songs/cover1.jpg"
+}
+
+🔗 Spotify Integration (UI Only)
+
+Playlist cards link to real Spotify playlists:
+
+{
+  type: "external",
+  url: "https://open.spotify.com/playlist/...."
+}
+
+
+When clicked → opens in a new tab.
+
+🧪 Future Improvements
+
+Search bar functionality
+
+Multi-user system (backend)
+
+Music streaming API integration
+
+Animated transitions
+
+Theme switching
+
+Upload custom songs
+
+💚 Contributing
+
+Pull requests are welcome!
+Feel free to open issues for feature requests or bugs.
+
+🖤 Credits
+
+Created with ❤️ by Sarthak.
+A personal learning project inspired by Spotify’s design and experience.
+
+📜 License
+
+This project is open-source and available under the MIT License.
