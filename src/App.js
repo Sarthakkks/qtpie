@@ -1,25 +1,73 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
-function App() {
+import Layout from "./components/Layout";
+import Home from "./pages/Home";
+import Playlist from "./pages/Playlist";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import { PlayerProvider } from "./context/PlayerContext";
+
+function PrivateRoute({ children }) {
+  const { user } = useAuth();
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+}
+
+function AppInner() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {/* PUBLIC AUTH PAGES (no layout) */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+
+        {/* PROTECTED PAGES (with Spotify-like layout) */}
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Layout>
+                <Home />
+              </Layout>
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/playlist/:id"
+          element={
+            <PrivateRoute>
+              <Layout>
+                <Playlist />
+              </Layout>
+            </PrivateRoute>
+          }
+        />
+
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <AuthProvider>
+      <PlayerProvider>
+        <AppInner />
+      </PlayerProvider>
+    </AuthProvider>
+  );
+}
